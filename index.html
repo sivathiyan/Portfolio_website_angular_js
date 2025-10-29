@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="portfolioApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Full Stack Developer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body ng-controller="MainController">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#hero">{{personalInfo.name}}</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">{{personalInfo.name}}</h1>
+                <p class="hero-subtitle">{{personalInfo.title}}</p>
+                <p class="hero-bio">{{personalInfo.bio}}</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn--primary hero-btn">View My Work</a>
+                    <a href="#contact" class="btn btn--outline hero-btn">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="avatar-placeholder">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p class="about-description">{{personalInfo.bio}}</p>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{personalInfo.location}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{personalInfo.email}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>{{personalInfo.phone}}</span>
+                        </div>
+                    </div>
+                    <div class="education">
+                        <h3>Education</h3>
+                        <div class="education-item" ng-repeat="edu in education">
+                            <h4>{{edu.degree}}</h4>
+                            <p>{{edu.university}} - {{edu.year}}</p>
+                            <p>GPA: {{edu.gpa}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills &amp; Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-list">
+                        <div class="skill-item" ng-repeat="skill in skills.frontend">
+                            <div class="skill-info">
+                                <span class="skill-name">{{skill.name}}</span>
+                                <span class="skill-percentage">{{skill.level}}%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" ng-style="{width: skill.level + '%'}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-list">
+                        <div class="skill-item" ng-repeat="skill in skills.backend">
+                            <div class="skill-info">
+                                <span class="skill-name">{{skill.name}}</span>
+                                <span class="skill-percentage">{{skill.level}}%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" ng-style="{width: skill.level + '%'}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools &amp; Technologies</h3>
+                    <div class="skill-list">
+                        <div class="skill-item" ng-repeat="skill in skills.tools">
+                            <div class="skill-info">
+                                <span class="skill-name">{{skill.name}}</span>
+                                <span class="skill-percentage">{{skill.level}}%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" ng-style="{width: skill.level + '%'}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" ng-repeat="project in projects">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">{{project.title}}</h3>
+                        <p class="project-description">{{project.description}}</p>
+                        <div class="project-technologies">
+                            <span class="tech-tag" ng-repeat="tech in project.technologies">{{tech}}</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="{{project.demo_link}}" class="btn btn--sm btn--primary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="{{project.github_link}}" class="btn btn--sm btn--outline" target="_blank">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" ng-repeat="job in experience">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="job-position">{{job.position}}</h3>
+                        <h4 class="job-company">{{job.company}}</h4>
+                        <p class="job-duration">{{job.duration}}</p>
+                        <ul class="job-responsibilities">
+                            <li ng-repeat="responsibility in job.responsibilities">{{responsibility}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always interested in new opportunities and exciting projects. Feel free to reach out!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{personalInfo.email}}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>{{personalInfo.phone}}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{personalInfo.location}}</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="{{socialLinks.github}}" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="{{socialLinks.linkedin}}" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="{{socialLinks.twitter}}" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form name="contactForm" ng-submit="submitForm()" novalidate>
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   ng-model="formData.name" 
+                                   name="name" 
+                                   required>
+                            <div class="form-error" ng-show="contactForm.name.$touched && contactForm.name.$invalid">
+                                Name is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" 
+                                   class="form-control" 
+                                   ng-model="formData.email" 
+                                   name="email" 
+                                   required>
+                            <div class="form-error" ng-show="contactForm.email.$touched && contactForm.email.$invalid">
+                                Valid email is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" 
+                                      ng-model="formData.message" 
+                                      name="message" 
+                                      rows="5" 
+                                      required></textarea>
+                            <div class="form-error" ng-show="contactForm.message.$touched && contactForm.message.$invalid">
+                                Message is required
+                            </div>
+                        </div>
+                        <button type="submit" 
+                                class="btn btn--primary btn--full-width" 
+                                ng-disabled="contactForm.$invalid">
+                            Send Message
+                        </button>
+                        <div class="form-success" ng-show="formSubmitted">
+                            <i class="fas fa-check-circle"></i> Message sent successfully!
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 {{personalInfo.name}}. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
